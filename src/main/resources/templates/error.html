@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Error | Mi Agenda')}"></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<main class="container app-container page-content">
+    <section class="form-page">
+        <h1 th:text="${status == 404} ? 'No encontrado' : 'Ha ocurrido un error'">Error</h1>
+        <p class="text-secondary" th:if="${status == 404}">Contacto no encontrado.</p>
+        <p class="text-secondary" th:unless="${status == 404}">No se pudo completar la solicitud.</p>
+        <a class="back-link" href="/views/agenda">&larr; Volver a contactos</a>
+    </section>
+</main>
+</body>
+</html>

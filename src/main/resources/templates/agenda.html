@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head('Contactos | Mi Agenda')}"></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<main class="container app-container page-content">
+    <section class="page-heading">
+        <div>
+            <p class="eyebrow">DIRECTORIO</p>
+            <h1>Contactos</h1>
+            <p class="text-secondary mb-0">Consulta y administra tu agenda.</p>
+        </div>
+        <a class="btn btn-primary" href="/views/contacts/new">Añadir contacto</a>
+    </section>
+
+    <section class="directory" aria-labelledby="directory-title">
+        <div class="directory-toolbar">
+            <div>
+                <h2 id="directory-title">Directorio</h2>
+                <p class="text-secondary mb-0"><span data-contact-count th:text="${contactos.size()}">0</span> contactos</p>
+            </div>
+            <label class="search-field">
+                <span class="visually-hidden">Buscar contactos</span>
+                <input class="form-control" data-contact-search type="search" placeholder="Buscar por nombre o correo">
+            </label>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-middle contact-table">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col"><span class="visually-hidden">Acciones</span></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${contactos}" data-contact-row>
+                    <td class="contact-name" th:data-search="|${c.nombre} ${c.mail}|" th:text="${c.nombre}">Nombre</td>
+                    <td><a th:href="|tel:${c.telefono}|" th:text="${c.telefono}">Teléfono</a></td>
+                    <td><a th:href="|mailto:${c.mail}|" th:text="${c.mail}">Correo</a></td>
+                    <td class="row-actions">
+                        <a class="btn btn-sm btn-outline-secondary" th:href="@{|/views/contacts/${c.id}/edit|}">Editar</a>
+                        <button class="btn btn-sm btn-outline-danger" th:attr="data-delete-contact=${c.id}" type="button">Eliminar</button>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(contactos)}" data-empty-row>
+                    <td colspan="4" class="empty-state">
+                        <strong>Aún no hay contactos</strong>
+                        <span>Añade el primero para empezar tu directorio.</span>
+                    </td>
+                </tr>
+                <tr th:if="${!#lists.isEmpty(contactos)}" data-no-results hidden>
+                    <td colspan="4" class="empty-state">No hay resultados para esa búsqueda.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>

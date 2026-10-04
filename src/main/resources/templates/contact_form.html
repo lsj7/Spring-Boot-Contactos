@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments :: head(${pageTitle} + ' | Mi Agenda')}"></head>
+<body>
+<nav th:replace="~{fragments :: nav}"></nav>
+<main class="container app-container page-content">
+    <section class="form-page">
+        <a class="back-link" href="/views/agenda">&larr; Volver a contactos</a>
+        <form class="form-panel contact-form" data-contact-form th:attr="data-contact-id=${contacto != null ? contacto.id : ''}">
+            <p class="eyebrow">DIRECTORIO</p>
+            <h1 th:text="${pageTitle}">Contacto</h1>
+            <p class="text-secondary">Los campos marcados son necesarios para guardar el contacto.</p>
+            <div class="alert alert-danger" data-feedback role="alert" hidden></div>
+            <label class="form-label" for="contact-name">Nombre</label>
+            <input class="form-control mb-3" id="contact-name" name="nombre" th:value="${contacto != null ? contacto.nombre : ''}" minlength="2" maxlength="50" autocomplete="name" required>
+            <label class="form-label" for="contact-phone">Teléfono</label>
+            <input class="form-control mb-3" id="contact-phone" name="telefono" th:value="${contacto != null ? contacto.telefono : ''}" type="tel" inputmode="numeric" pattern="[0-9]{7,15}" title="Usa entre 7 y 15 dígitos" autocomplete="tel" required>
+            <label class="form-label" for="contact-email">Correo electrónico</label>
+            <input class="form-control mb-4" id="contact-email" name="mail" th:value="${contacto != null ? contacto.mail : ''}" type="email" maxlength="254" autocomplete="email" required>
+            <div class="form-actions">
+                <a class="btn btn-outline-secondary" href="/views/agenda">Cancelar</a>
+                <button class="btn btn-primary" type="submit">Guardar contacto</button>
+            </div>
+        </form>
+    </section>
+</main>
+<script src="/app.js" defer></script>
+</body>
+</html>

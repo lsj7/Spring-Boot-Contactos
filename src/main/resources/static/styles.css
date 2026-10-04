@@ -1,0 +1,134 @@
+:root {
+    color-scheme: light;
+    --ink: #202c2a;
+    --muted: #66736f;
+    --paper: #f5f7f4;
+    --surface: #ffffff;
+    --line: #dce4df;
+    --green: #176b55;
+    --green-dark: #125442;
+    --lime: #d7e7c5;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: "Avenir Next", Avenir, "Segoe UI", sans-serif;
+}
+
+a { color: var(--green-dark); }
+a:hover { color: var(--green); }
+
+.app-nav {
+    min-height: 68px;
+    background: var(--ink);
+}
+
+.app-container { max-width: 1120px; }
+.navbar-brand { letter-spacing: 0; }
+.nav-actions { display: flex; align-items: center; gap: 8px; }
+.nav-actions .nav-link { color: #edf3ee; padding: 8px 10px; }
+.nav-actions .nav-link:hover { color: var(--lime); }
+.nav-button { border: 0; background: transparent; }
+.page-content { padding-top: 48px; padding-bottom: 72px; }
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.page-heading h1,
+.form-panel h1,
+.auth-intro h1 {
+    margin: 0 0 10px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+    letter-spacing: 0;
+}
+
+.page-heading h1 { font-size: 2.5rem; }
+.eyebrow { margin: 0 0 10px; color: var(--green); font-size: .72rem; font-weight: 750; letter-spacing: .12em; }
+
+.btn-primary {
+    --bs-btn-bg: var(--green);
+    --bs-btn-border-color: var(--green);
+    --bs-btn-hover-bg: var(--green-dark);
+    --bs-btn-hover-border-color: var(--green-dark);
+    --bs-btn-active-bg: var(--green-dark);
+    --bs-btn-active-border-color: var(--green-dark);
+}
+
+.directory {
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface);
+}
+
+.directory-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--line);
+}
+
+.directory-toolbar h2 { margin: 0 0 4px; font-size: 1.05rem; font-weight: 700; }
+.search-field { width: min(100%, 330px); }
+.form-control { border-color: #cbd6d0; }
+.form-control:focus { border-color: var(--green); box-shadow: 0 0 0 .2rem rgb(23 107 85 / 14%); }
+.contact-table { margin: 0; }
+.contact-table th { padding: 14px 24px; color: var(--muted); font-size: .75rem; font-weight: 700; text-transform: uppercase; }
+.contact-table td { padding: 16px 24px; border-color: #edf1ee; }
+.contact-name { font-weight: 650; }
+.row-actions { white-space: nowrap; text-align: right; }
+.row-actions .btn + .btn { margin-left: 4px; }
+.empty-state { padding: 48px 24px !important; text-align: center; color: var(--muted); }
+.empty-state strong, .empty-state span { display: block; }
+.empty-state strong { margin-bottom: 5px; color: var(--ink); }
+
+.auth-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
+    align-items: center;
+    gap: clamp(36px, 8vw, 112px);
+    max-width: 960px;
+    min-height: 520px;
+    margin: 0 auto;
+}
+
+.auth-intro h1 { font-size: clamp(2.5rem, 5vw, 4rem); line-height: 1.04; }
+.auth-intro > p:last-child { max-width: 360px; }
+.form-panel { padding: 32px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+.form-panel h2 { margin: 0 0 6px; font-size: 1.35rem; font-weight: 700; }
+.form-panel > .text-secondary { margin-bottom: 24px; }
+.form-footnote { margin: 20px 0 0; color: var(--muted); text-align: center; font-size: .9rem; }
+.form-page { max-width: 640px; margin: 0 auto; }
+.back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; }
+.contact-form h1 { font-size: 2.15rem; }
+.contact-form .form-label { font-weight: 650; }
+.form-actions { display: flex; justify-content: flex-end; gap: 10px; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 700px) {
+    .page-content { padding-top: 32px; }
+    .page-heading { align-items: start; flex-direction: column; }
+    .page-heading .btn { width: 100%; }
+    .directory-toolbar { align-items: stretch; flex-direction: column; padding: 18px; }
+    .search-field { width: 100%; }
+    .contact-table th, .contact-table td { padding-right: 14px; padding-left: 14px; }
+    .row-actions .btn { margin: 2px 0; }
+    .auth-layout { grid-template-columns: 1fr; gap: 24px; min-height: unset; }
+    .auth-intro h1 { font-size: 2.5rem; }
+    .form-panel { padding: 24px; }
+    .nav-actions { gap: 0; }
+    .nav-actions .nav-link { padding: 8px 6px; font-size: .85rem; }
+}
+.nav-logout { display: inline; margin: 0; }
+.nav-button { cursor: pointer; }
